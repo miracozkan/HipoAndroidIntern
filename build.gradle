@@ -17,7 +17,6 @@ buildscript {
         annotation_annotation_version='1.1.0'
         retrofit2_retrofit_version='2.7.1'
         okhttp3_okhttp_version='4.3.1'
-        room_version = '2.2.4'
         dagger_android_version = "2.26"
     }
     repositories {
