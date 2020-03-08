@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/memberSearchFragment">
+
+    <fragment
+        android:id="@+id/memberSearchFragment"
+        android:name="com.miracozkan.hipoandroidintern.ui.member_search.MemberSearchFragment"
+        android:label="fragment_member_search"
+        tools:layout="@layout/fragment_member_search" />
+</navigation>
