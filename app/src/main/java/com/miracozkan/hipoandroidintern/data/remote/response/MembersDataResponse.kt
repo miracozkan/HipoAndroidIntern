@@ -1,8 +1,4 @@
-package com.miracozkan.hipoandroidintern.data.repository
-
-import androidx.lifecycle.LiveData
-import com.miracozkan.hipoandroidintern.data.remote.response.Member
-import com.miracozkan.hipoandroidintern.util.Result
+package com.miracozkan.hipoandroidintern.data.remote.response
 
 
 // Code with ❤
@@ -11,9 +7,11 @@ import com.miracozkan.hipoandroidintern.util.Result
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 08.03.2020 - 10:48          │
+//│ 08.03.2020 - 11:43          │
 //└─────────────────────────────┘
 
-interface MemberRepository {
-    fun getAllTeamMembers(): LiveData<Result<List<Member>>>
-}
+data class MembersDataResponse(
+    val company: String,
+    val members: List<Member>,
+    val team: String
+)
