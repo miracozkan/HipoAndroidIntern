@@ -1,8 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-    <string name="app_name">HipoAndroidIntern</string>
-    <string name="added_new_member">New members is added</string>
-    <string name="error">Error</string>
     <string name="add_new_member">ADD NEW MEMBER</string>
-    <string name="members">Members</string>
+
+    <string name="added_new_member">New members is added</string>
+
+    <string name="app_name">HipoAndroidIntern</string>
+
+    <string name="error">Error</string>
     <string name="error_null">Something went wrong</string>
+
+    <string name="intern_name">Mirac Ozkan</string>
+
+    <string name="members">Members</string>
 </resources>

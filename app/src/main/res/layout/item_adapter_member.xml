@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="24dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="24dp"
-    android:elevation="2dp"
-    app:cardCornerRadius="8dp">
+    android:layout_marginStart="@dimen/adapter_item_margin_start_end"
+    android:layout_marginTop="@dimen/adapter_item_margin_top"
+    android:layout_marginEnd="@dimen/adapter_item_margin_start_end"
+    android:elevation="@dimen/cardView_elevation"
+    app:cardCornerRadius="@dimen/adapter_item_cardView_cornerRadius">
 
     <TextView
         android:id="@+id/txtMemberName"
         android:layout_width="match_parent"
         android:background="@drawable/item_member_adapter_background"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="@dimen/adapter_item_padding"
         android:textColor="@android:color/black"
-        android:textSize="12sp"
-        tools:text="Mirac Ozkan" />
+        android:textSize="@dimen/adapter_item_text_size"
+        tools:text="@string/intern_name" />
 
 </androidx.cardview.widget.CardView>

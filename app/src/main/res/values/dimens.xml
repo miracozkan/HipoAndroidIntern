@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <dimen name="adapter_item_cardView_cornerRadius">8dp</dimen>
+    <dimen name="adapter_item_margin_start_end">24dp</dimen>
+    <dimen name="adapter_item_margin_top">16dp</dimen>
+    <dimen name="adapter_item_padding">16dp</dimen>
+    <dimen name="adapter_item_text_size">12sp</dimen>
+
+    <dimen name="button_rounded_radius">32dp</dimen>
+
+    <dimen name="cardView_elevation">2dp</dimen>
+
+    <dimen name="item_member_radius">8dp</dimen>
+    <dimen name="item_member_stroke_width">4px</dimen>
+
+    <dimen name="member_add_button_margin_bottom">32dp</dimen>
+    <dimen name="member_add_button_margin_start_end">48dp</dimen>
+
+    <dimen name="recyc_margin_bottom_top">16dp</dimen>
+
+    <dimen name="srcView_margin_start_end">24dp</dimen>
+    <dimen name="srcView_margin_top">16dp</dimen>
+    <dimen name="srcView_radius">8dp</dimen>
+    <dimen name="srcView_stroke_width">4px</dimen>
+</resources>

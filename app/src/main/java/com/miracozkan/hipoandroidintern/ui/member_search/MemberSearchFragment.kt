@@ -55,15 +55,15 @@ class MemberSearchFragment : DaggerFragment(), SearchView.OnQueryTextListener {
         memberSearchViewModel.teamMembers.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
-                    binding.prgMemberList.hide()
+                    binding.prgBarMemberList.hide()
                     adapter.setNewMemberList(result.data.orEmpty() as ArrayList<Member>)
                 }
                 ERROR -> {
                     showSnackBar(result.message ?: getString(R.string.error_null))
-                    binding.prgMemberList.hide()
+                    binding.prgBarMemberList.hide()
                 }
                 LOADING -> {
-                    binding.prgMemberList.show()
+                    binding.prgBarMemberList.show()
                 }
             }
         })
@@ -78,7 +78,7 @@ class MemberSearchFragment : DaggerFragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        adapter.filter.filter(newText ?: " ")
+        adapter.filter.filter(newText ?: SPACE)
         return false
     }
 }

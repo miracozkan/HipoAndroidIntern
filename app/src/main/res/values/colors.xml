@@ -1,6 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="colorPrimary">#6200EE</color>
+
+    <color name="colorPrimaryDark">#3700B3</color>
+
+    <color name="item_member_background">#FAFBFC</color>
+    <color name="item_member_stroke_color">#E9E9F1</color>
+
+    <color name="member_add_button_color">#2DBA4E</color>
+
+    <color name="srcView_background">#E8E8E8</color>
 </resources>

@@ -12,3 +12,5 @@ package com.miracozkan.hipoandroidintern.util
 
 const val BASE_URL =
     "https://gist.githubusercontent.com/artizco/a957d4e0af6f9d35048808e7200ea076/raw/aedca21e45b094a7ba3e36d775a3928e10674355/"
+
+const val SPACE = " "
