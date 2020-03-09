@@ -3,7 +3,6 @@ package com.miracozkan.hipoandroidintern.util
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
 
-
 // Code with ❤
 //┌─────────────────────────────┐
 //│ Created by Mirac OZKAN      │

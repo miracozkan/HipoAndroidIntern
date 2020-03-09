@@ -5,7 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import com.miracozkan.hipoandroidintern.data.remote.ProjectService
 import com.miracozkan.hipoandroidintern.data.remote.response.Member
 import com.miracozkan.hipoandroidintern.util.Result
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
@@ -20,7 +24,7 @@ import kotlin.coroutines.CoroutineContext
 //└─────────────────────────────┘
 
 class MemberRepositoryImpl @Inject constructor(
-    private val projectService: ProjectService
+        private val projectService: ProjectService
 ) : MemberRepository, CoroutineScope {
 
     private val teamMembersResponse = MutableLiveData<Result<List<Member>>>()

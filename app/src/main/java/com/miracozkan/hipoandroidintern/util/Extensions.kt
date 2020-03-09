@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 
-
 // Code with ❤
 //┌─────────────────────────────┐
 //│ Created by Mirac OZKAN      │

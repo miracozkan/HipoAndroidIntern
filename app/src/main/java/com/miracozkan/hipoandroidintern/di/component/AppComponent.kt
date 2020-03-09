@@ -2,7 +2,11 @@ package com.miracozkan.hipoandroidintern.di.component
 
 import android.app.Application
 import com.miracozkan.hipoandroidintern.HipoAndroidInternApp
-import com.miracozkan.hipoandroidintern.di.module.*
+import com.miracozkan.hipoandroidintern.di.module.AppModule
+import com.miracozkan.hipoandroidintern.di.module.FragmentModule
+import com.miracozkan.hipoandroidintern.di.module.NetworkModule
+import com.miracozkan.hipoandroidintern.di.module.RepositoryModule
+import com.miracozkan.hipoandroidintern.di.module.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

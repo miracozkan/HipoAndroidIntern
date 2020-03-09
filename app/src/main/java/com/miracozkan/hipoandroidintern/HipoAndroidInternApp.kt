@@ -7,7 +7,6 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-
 // Code with ❤
 //┌─────────────────────────────┐
 //│ Created by Mirac OZKAN      │

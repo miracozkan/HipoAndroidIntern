@@ -1,6 +1,5 @@
 package com.miracozkan.hipoandroidintern.util
 
-
 // Code with ❤
 //┌─────────────────────────────┐
 //│ Created by Mirac OZKAN      │

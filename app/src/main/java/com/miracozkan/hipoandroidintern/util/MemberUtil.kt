@@ -3,7 +3,6 @@ package com.miracozkan.hipoandroidintern.util
 import com.miracozkan.hipoandroidintern.data.remote.response.Hipo
 import com.miracozkan.hipoandroidintern.data.remote.response.Member
 
-
 // Code with ❤
 //┌─────────────────────────────┐
 //│ Created by Mirac OZKAN      │
