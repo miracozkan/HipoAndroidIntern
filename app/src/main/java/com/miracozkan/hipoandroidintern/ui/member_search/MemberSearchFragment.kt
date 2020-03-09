@@ -4,23 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.miracozkan.hipoandroidintern.data.remote.response.Member
 import com.miracozkan.hipoandroidintern.databinding.FragmentMemberSearchBinding
 import com.miracozkan.hipoandroidintern.di.ViewModelFactory
 import com.miracozkan.hipoandroidintern.ui.adapter.MemberListAdapter
+import com.miracozkan.hipoandroidintern.util.*
 import com.miracozkan.hipoandroidintern.util.Status.*
-import com.miracozkan.hipoandroidintern.util.hide
-import com.miracozkan.hipoandroidintern.util.injectViewModel
-import com.miracozkan.hipoandroidintern.util.show
-import com.miracozkan.hipoandroidintern.util.showSnackBar
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
  */
-class MemberSearchFragment : DaggerFragment() {
+class MemberSearchFragment : DaggerFragment(), SearchView.OnQueryTextListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -34,13 +33,18 @@ class MemberSearchFragment : DaggerFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = FragmentMemberSearchBinding.inflate(layoutInflater)
+
         memberSearchViewModel = injectViewModel(viewModelFactory)
+
         adapter = MemberListAdapter {
             showSnackBar(it.name)
         }.also {
             binding.recycMemberList.adapter = it
         }
+
+        binding.srcMemberName.setOnQueryTextListener(this)
         return binding.root
     }
 
@@ -51,7 +55,7 @@ class MemberSearchFragment : DaggerFragment() {
             when (result.status) {
                 SUCCESS -> {
                     binding.prgMemberList.hide()
-                    adapter.submitList(result.data)
+                    adapter.setNewMemberList(result.data.orEmpty() as ArrayList<Member>)
                 }
                 ERROR -> {
                     showSnackBar(result.message ?: "Something went wrong")
@@ -63,5 +67,17 @@ class MemberSearchFragment : DaggerFragment() {
             }
         })
 
+        binding.btnAddNewMember.setOnClickListener {
+            adapter.addNewMember(generateNewMember())
+        }
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return false
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        adapter.filter.filter(newText ?: " ")
+        return false
     }
 }
