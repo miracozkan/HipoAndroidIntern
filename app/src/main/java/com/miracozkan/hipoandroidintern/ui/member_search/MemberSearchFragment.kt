@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.miracozkan.hipoandroidintern.R
 import com.miracozkan.hipoandroidintern.data.remote.response.Member
 import com.miracozkan.hipoandroidintern.databinding.FragmentMemberSearchBinding
 import com.miracozkan.hipoandroidintern.di.ViewModelFactory
@@ -40,8 +41,8 @@ class MemberSearchFragment : DaggerFragment(), SearchView.OnQueryTextListener {
 
         adapter = MemberListAdapter {
             showSnackBar(it.name)
-        }.also {
-            binding.recycMemberList.adapter = it
+        }.also { memberAdapter ->
+            binding.recycMemberList.adapter = memberAdapter
         }
 
         binding.srcMemberName.setOnQueryTextListener(this)
@@ -58,7 +59,7 @@ class MemberSearchFragment : DaggerFragment(), SearchView.OnQueryTextListener {
                     adapter.setNewMemberList(result.data.orEmpty() as ArrayList<Member>)
                 }
                 ERROR -> {
-                    showSnackBar(result.message ?: "Something went wrong")
+                    showSnackBar(result.message ?: getString(R.string.error_null))
                     binding.prgMemberList.hide()
                 }
                 LOADING -> {
