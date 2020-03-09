@@ -2,8 +2,8 @@ package com.miracozkan.hipoandroidintern.di.module
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.miracozkan.hipoandroidintern.BuildConfig
 import com.miracozkan.hipoandroidintern.data.remote.ProjectService
-import com.miracozkan.hipoandroidintern.util.BASE_URL
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -58,7 +58,7 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideService(retrofit: Retrofit.Builder): ProjectService {
-        return retrofit.baseUrl(BASE_URL)
+        return retrofit.baseUrl(BuildConfig.API_URL)
             .build()
             .create(ProjectService::class.java)
     }

@@ -25,6 +25,16 @@ android {
         }
     }
 
+    flavorDimensions 'dev'
+    productFlavors {
+        dev {
+            buildConfigField("String", "API_URL", '"https://gist.githubusercontent.com/artizco/a957d4e0af6f9d35048808e7200ea076/raw/aedca21e45b094a7ba3e36d775a3928e10674355/"')
+        }
+        prod {
+            buildConfigField("String", "API_URL", '"https://gist.githubusercontent.com/artizco/a957d4e0af6f9d35048808e7200ea076/raw/aedca21e45b094a7ba3e36d775a3928e10674355/"')
+        }
+    }
+
     viewBinding {
         enabled = true
     }
