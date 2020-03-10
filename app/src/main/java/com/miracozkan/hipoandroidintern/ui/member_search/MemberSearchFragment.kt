@@ -8,17 +8,10 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.miracozkan.hipoandroidintern.R
-import com.miracozkan.hipoandroidintern.data.remote.response.Member
 import com.miracozkan.hipoandroidintern.databinding.FragmentMemberSearchBinding
 import com.miracozkan.hipoandroidintern.di.ViewModelFactory
 import com.miracozkan.hipoandroidintern.ui.adapter.MemberListAdapter
-import com.miracozkan.hipoandroidintern.util.SPACE
-import com.miracozkan.hipoandroidintern.util.Status
-import com.miracozkan.hipoandroidintern.util.generateNewMember
-import com.miracozkan.hipoandroidintern.util.hide
-import com.miracozkan.hipoandroidintern.util.injectViewModel
-import com.miracozkan.hipoandroidintern.util.show
-import com.miracozkan.hipoandroidintern.util.showSnackBar
+import com.miracozkan.hipoandroidintern.util.*
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -36,8 +29,8 @@ class MemberSearchFragment : DaggerFragment(), SearchView.OnQueryTextListener {
     private lateinit var adapter: MemberListAdapter
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
         binding = FragmentMemberSearchBinding.inflate(layoutInflater)
@@ -61,7 +54,7 @@ class MemberSearchFragment : DaggerFragment(), SearchView.OnQueryTextListener {
             when (result.status) {
                 Status.SUCCESS -> {
                     binding.prgBarMemberList.hide()
-                    adapter.setNewMemberList(result.data.orEmpty() as ArrayList<Member>)
+                    adapter.setNewMembers(result.data.orEmpty())
                 }
                 Status.ERROR -> {
                     showSnackBar(result.message ?: getString(R.string.error_null))
@@ -74,8 +67,9 @@ class MemberSearchFragment : DaggerFragment(), SearchView.OnQueryTextListener {
         })
 
         binding.btnAddNewMember.setOnClickListener {
-            adapter.addNewMember(generateNewMember())
+            memberSearchViewModel.addNewMember(generateNewMember())
         }
+
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
@@ -83,7 +77,8 @@ class MemberSearchFragment : DaggerFragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        adapter.filter.filter(newText ?: SPACE)
+        memberSearchViewModel.searchList(newText ?: SPACE)
         return false
     }
+
 }

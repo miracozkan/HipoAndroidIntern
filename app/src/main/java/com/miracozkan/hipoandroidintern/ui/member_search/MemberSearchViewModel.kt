@@ -1,6 +1,7 @@
 package com.miracozkan.hipoandroidintern.ui.member_search
 
 import androidx.lifecycle.ViewModel
+import com.miracozkan.hipoandroidintern.data.remote.response.Member
 import com.miracozkan.hipoandroidintern.data.repository.MemberRepositoryImpl
 import javax.inject.Inject
 
@@ -15,10 +16,17 @@ import javax.inject.Inject
 //└─────────────────────────────┘
 
 class MemberSearchViewModel @Inject constructor(
-    memberRepositoryImpl: MemberRepositoryImpl
+    private val memberRepositoryImpl: MemberRepositoryImpl
 ) : ViewModel() {
 
     private val _teamMembersResult = memberRepositoryImpl.getAllTeamMembers()
     val teamMembers get() = _teamMembersResult
 
+    fun addNewMember(member: Member) {
+        memberRepositoryImpl.addNewMember(member)
+    }
+
+    fun searchList(search: String) {
+        memberRepositoryImpl.searchText(search)
+    }
 }

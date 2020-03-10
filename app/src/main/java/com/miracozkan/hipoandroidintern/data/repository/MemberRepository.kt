@@ -15,5 +15,11 @@ import com.miracozkan.hipoandroidintern.util.Result
 //└─────────────────────────────┘
 
 interface MemberRepository {
+
     fun getAllTeamMembers(): LiveData<Result<List<Member>>>
+
+    fun addNewMember(member: Member)
+
+    fun searchText(search: String)
+
 }
