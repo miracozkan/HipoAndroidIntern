@@ -40,9 +40,33 @@ class MemberSearchFragment : DaggerFragment(), SearchView.OnQueryTextListener {
     ): View? {
 
         binding = FragmentMemberSearchBinding.inflate(layoutInflater)
+        initNetworkStateObserver()
+        initUI()
+        return binding.root
+    }
 
-        memberSearchViewModel.networkState.observe(viewLifecycleOwner, Observer {
-            when (it) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initMemberListObserver()
+    }
+
+    private fun initUI() {
+        adapter = MemberListAdapter {
+            showSnackBar(it.name)
+        }.also { memberAdapter ->
+            binding.recycMemberList.adapter = memberAdapter
+        }
+
+        binding.btnAddNewMember.setOnClickListener {
+            memberSearchViewModel.addNewMember(generateNewMember())
+        }
+
+        binding.srcMemberName.setOnQueryTextListener(this)
+    }
+
+    private fun initNetworkStateObserver() {
+        memberSearchViewModel.networkState.observe(viewLifecycleOwner, Observer { networkState ->
+            when (networkState) {
                 CONNECTED -> {
                     showSnackBar(getString(R.string.you_are_online))
                 }
@@ -57,24 +81,6 @@ class MemberSearchFragment : DaggerFragment(), SearchView.OnQueryTextListener {
                 }
             }
         })
-
-        adapter = MemberListAdapter {
-            showSnackBar(it.name)
-        }.also { memberAdapter ->
-            binding.recycMemberList.adapter = memberAdapter
-        }
-
-        binding.btnAddNewMember.setOnClickListener {
-            memberSearchViewModel.addNewMember(generateNewMember())
-        }
-
-        binding.srcMemberName.setOnQueryTextListener(this)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initMemberListObserver()
     }
 
     private fun initMemberListObserver() {
@@ -85,9 +91,7 @@ class MemberSearchFragment : DaggerFragment(), SearchView.OnQueryTextListener {
                     adapter.setNewMembers(result.data.orEmpty())
                 }
                 Status.ERROR -> {
-                    result.message?.let {
-                        showSnackBar(result.message)
-                    }
+                    showSnackBar(result.message ?: getString(R.string.error_null))
                     binding.prgBarMemberList.hide()
                 }
                 Status.LOADING -> {
