@@ -12,4 +12,7 @@
     <string name="intern_name">Mirac Ozkan</string>
 
     <string name="members">Members</string>
+    <string name="lost_connection">Your lost connection</string>
+    <string name="you_are_offline">You are offline</string>
+    <string name="you_are_online">You are online</string>
 </resources>

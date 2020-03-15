@@ -1,5 +1,6 @@
 package com.miracozkan.hipoandroidintern.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.miracozkan.hipoandroidintern.data.remote.ProjectService
@@ -56,7 +57,8 @@ class MemberRepositoryImpl @Inject constructor(
                     teamMembersResponse.postValue(Result.error(response.message()))
                 }
             } catch (e: Exception) {
-                teamMembersResponse.postValue(Result.error(e.localizedMessage ?: "Exception"))
+                teamMembersResponse.postValue(Result.error())
+                Log.e("Repository Exception:", e.localizedMessage ?: "Exception")
             }
         }
     }

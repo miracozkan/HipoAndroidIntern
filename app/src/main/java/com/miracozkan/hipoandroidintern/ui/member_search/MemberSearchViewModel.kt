@@ -3,6 +3,7 @@ package com.miracozkan.hipoandroidintern.ui.member_search
 import androidx.lifecycle.ViewModel
 import com.miracozkan.hipoandroidintern.data.remote.response.Member
 import com.miracozkan.hipoandroidintern.data.repository.MemberRepositoryImpl
+import com.miracozkan.hipoandroidintern.di.NetworkStateMonitor
 import javax.inject.Inject
 
 
@@ -16,7 +17,8 @@ import javax.inject.Inject
 //└─────────────────────────────┘
 
 class MemberSearchViewModel @Inject constructor(
-    private val memberRepositoryImpl: MemberRepositoryImpl
+    private val memberRepositoryImpl: MemberRepositoryImpl,
+    private val networkStateMonitor: NetworkStateMonitor
 ) : ViewModel() {
 
     private val _teamMembersResult = memberRepositoryImpl.getAllTeamMembers()
@@ -29,4 +31,7 @@ class MemberSearchViewModel @Inject constructor(
     fun searchList(search: String) {
         memberRepositoryImpl.searchText(search)
     }
+
+    private val _networkState = networkStateMonitor
+    val networkState get() = _networkState
 }
