@@ -1,5 +1,7 @@
 package com.miracozkan.hipoandroidintern.data.remote.response
 
+import com.google.gson.annotations.SerializedName
+
 
 // Code with ❤
 //┌─────────────────────────────┐
@@ -11,9 +13,14 @@ package com.miracozkan.hipoandroidintern.data.remote.response
 //└─────────────────────────────┘
 
 data class Member(
+    @SerializedName("age")
     val age: Int,
+    @SerializedName("github")
     val github: String,
+    @SerializedName("hipo")
     val hipo: Hipo,
+    @SerializedName("location")
     val location: String,
+    @SerializedName("name")
     val name: String
 )
