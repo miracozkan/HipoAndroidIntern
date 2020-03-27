@@ -17,7 +17,7 @@
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/srcMemberName"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/srcView_margin_start_end"
         android:layout_marginTop="@dimen/srcView_margin_top"
@@ -29,26 +29,32 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycMemberList"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/recyc_margin_bottom_top"
         android:layout_marginBottom="@dimen/recyc_margin_bottom_top"
+        android:overScrollMode="never"
+        android:paddingBottom="@dimen/members_recyc_padding_bottom"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/btnAddNewMember"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/srcMemberName" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAddNewMember"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/member_add_button_margin_start_end"
         android:layout_marginEnd="@dimen/member_add_button_margin_start_end"
         android:layout_marginBottom="@dimen/member_add_button_margin_bottom"
-        android:background="@drawable/button_rounded"
+        android:gravity="center"
+        android:paddingTop="@dimen/add_member_button_padding"
+        android:paddingBottom="@dimen/add_member_button_padding"
         android:text="@string/add_new_member"
         android:textColor="@android:color/white"
+        app:backgroundTint="@color/member_add_button_color"
+        app:cornerRadius="@dimen/add_member_button_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

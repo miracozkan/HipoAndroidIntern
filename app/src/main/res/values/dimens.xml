@@ -22,4 +22,7 @@
     <dimen name="srcView_margin_top">16dp</dimen>
     <dimen name="srcView_radius">8dp</dimen>
     <dimen name="srcView_stroke_width">4px</dimen>
+    <dimen name="add_member_button_padding">16dp</dimen>
+    <dimen name="add_member_button_radius">24dp</dimen>
+    <dimen name="members_recyc_padding_bottom">16dp</dimen>
 </resources>
