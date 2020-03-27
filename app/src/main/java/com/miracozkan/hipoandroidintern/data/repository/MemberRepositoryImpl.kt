@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import com.miracozkan.hipoandroidintern.data.remote.ProjectService
 import com.miracozkan.hipoandroidintern.data.remote.response.Member
 import com.miracozkan.hipoandroidintern.util.Result
-import com.miracozkan.hipoandroidintern.util.SPACE
 import kotlinx.coroutines.*
 import java.util.*
 import javax.inject.Inject
@@ -35,7 +34,7 @@ class MemberRepositoryImpl @Inject constructor(
     private var filteredList = ArrayList<Member>()
 
     private var isFiltering = false
-    private var searchingText = SPACE
+    private var searchingText = ""
 
     override fun getAllTeamMembers(): LiveData<Result<List<Member>>> {
         launch {

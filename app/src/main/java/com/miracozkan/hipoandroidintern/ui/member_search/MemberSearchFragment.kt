@@ -8,6 +8,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.miracozkan.hipoandroidintern.R
+import com.miracozkan.hipoandroidintern.data.remote.response.MembersDataResponse.Companion.generateNewMember
 import com.miracozkan.hipoandroidintern.databinding.FragmentMemberSearchBinding
 import com.miracozkan.hipoandroidintern.di.NetworkState.*
 import com.miracozkan.hipoandroidintern.di.ViewModelFactory
@@ -106,7 +107,7 @@ class MemberSearchFragment : DaggerFragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        memberSearchViewModel.searchList(newText ?: SPACE)
+        memberSearchViewModel.searchList(newText.orEmpty())
         return false
     }
 

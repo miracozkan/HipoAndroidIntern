@@ -1,5 +1,7 @@
 package com.miracozkan.hipoandroidintern.data.remote.response
 
+import com.google.gson.annotations.SerializedName
+
 
 // Code with ❤
 //┌─────────────────────────────┐
@@ -11,6 +13,8 @@ package com.miracozkan.hipoandroidintern.data.remote.response
 //└─────────────────────────────┘
 
 data class Hipo(
+    @SerializedName("position")
     val position: String,
-    val years_in_hipo: Int
+    @SerializedName("years_in_hipo")
+    val yearsInHipo: Int
 )

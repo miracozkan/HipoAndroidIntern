@@ -17,7 +17,7 @@ import com.miracozkan.hipoandroidintern.databinding.ItemAdapterMemberBinding
 //└─────────────────────────────┘
 
 class MemberListAdapter(
-    private var memberList: List<Member>? = null,
+    private var memberList: List<Member> = listOf(),
     private val onItemClickListener: (Member) -> Unit
 ) : RecyclerView.Adapter<MembersViewHolder>() {
 
@@ -32,14 +32,11 @@ class MemberListAdapter(
     }
 
     override fun onBindViewHolder(holder: MembersViewHolder, position: Int) {
-        holder.bind(memberList!![position], onItemClickListener)
+        holder.bind(memberList[position], onItemClickListener)
     }
 
     override fun getItemCount(): Int {
-        memberList?.let {
-            return it.size
-        }
-        return 0
+        return memberList.size
     }
 
     fun setNewMembers(memberList: List<Member>) {
