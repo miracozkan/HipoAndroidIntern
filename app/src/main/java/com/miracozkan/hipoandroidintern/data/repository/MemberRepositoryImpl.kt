@@ -1,15 +1,14 @@
 package com.miracozkan.hipoandroidintern.data.repository
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.miracozkan.hipoandroidintern.common.BaseRepository
 import com.miracozkan.hipoandroidintern.data.remote.ProjectService
 import com.miracozkan.hipoandroidintern.data.remote.response.Member
 import com.miracozkan.hipoandroidintern.util.Result
-import kotlinx.coroutines.*
+import com.miracozkan.hipoandroidintern.util.Status
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
-import kotlin.coroutines.CoroutineContext
 
 
 // Code with ❤
@@ -23,12 +22,9 @@ import kotlin.coroutines.CoroutineContext
 
 class MemberRepositoryImpl @Inject constructor(
     private val projectService: ProjectService
-) : MemberRepository, CoroutineScope {
+) : MemberRepository, BaseRepository() {
 
-    override val coroutineContext: CoroutineContext
-        get() = Job() + Dispatchers.Main
-
-    private val teamMembersResponse = MutableLiveData<Result<List<Member>>>()
+    val teamMembersResponse = MutableLiveData<Result<List<Member>>>()
 
     private var memberList = ArrayList<Member>()
     private var filteredList = ArrayList<Member>()
@@ -36,27 +32,15 @@ class MemberRepositoryImpl @Inject constructor(
     private var isFiltering = false
     private var searchingText = ""
 
-    override fun getAllTeamMembers(): LiveData<Result<List<Member>>> {
-        launch {
-            fetchAllTeamMembers()
+    override suspend fun getAllTeamMembers() {
+        val result = getResult {
+            projectService.getMembersData()
         }
-        return teamMembersResponse
-    }
-
-    private suspend fun fetchAllTeamMembers() {
-        withContext(Dispatchers.IO) {
-            try {
-                teamMembersResponse.postValue(Result.loading())
-                val response = projectService.getMembersData()
-                if (response.isSuccessful) {
-                    memberList = response.body()?.members as ArrayList<Member>
-                    teamMembersResponse.postValue(Result.success(memberList))
-                } else {
-                    teamMembersResponse.postValue(Result.error(response.message()))
-                }
-            } catch (e: Exception) {
-                teamMembersResponse.postValue(Result.error(e.localizedMessage ?: "Exception"))
-            }
+        if (result.status == Status.SUCCESS) {
+            memberList = result.data?.members as ArrayList<Member>
+            teamMembersResponse.postValue(Result.success(result.data.members.orEmpty()))
+        } else {
+            teamMembersResponse.postValue(Result.error(result.message))
         }
     }
 

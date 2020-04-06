@@ -1,8 +1,6 @@
 package com.miracozkan.hipoandroidintern.data.repository
 
-import androidx.lifecycle.LiveData
 import com.miracozkan.hipoandroidintern.data.remote.response.Member
-import com.miracozkan.hipoandroidintern.util.Result
 
 
 // Code with ❤
@@ -16,7 +14,7 @@ import com.miracozkan.hipoandroidintern.util.Result
 
 interface MemberRepository {
 
-    fun getAllTeamMembers(): LiveData<Result<List<Member>>>
+    suspend fun getAllTeamMembers()
 
     fun addNewMember(member: Member)
 
